@@ -3,6 +3,8 @@
 #include <string.h>
 #include <stdlib.h>
 
+// https://ide.cs50.io/ adresine gidin. caesar.c adında yeni bir dosya açın. kodu içeri kopyalayın. make caesar yazarak kodu derleyin. ./caesar ve bir sayı yazarak programı başlatın. örneğin => ./caesar 13
+
 // Sezar Algoritması. CS50 problem set2.
 // prensip olarak açıklamaların ve değişkenlerin ingilizce olması lazım fakat bu seferlik böyle oldu.
 
