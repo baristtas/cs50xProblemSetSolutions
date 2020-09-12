@@ -6,29 +6,34 @@
 
     //CS50 problem set 2 Vigenere Task solution.
 
-    //Usage: ./vigenere <key word>
-    //Kullanım: ./vigenere <anahtar kelime>
-
 int errorFunction(int argc);
 
 int main(int argc, char* argv[]){
     if (argc != 2) return errorFunction(argc);
     for (int i = 0, x = strlen(argv[1]); i < x; i++){
-        if(isalpha(argv[1][i]) == 0) return printf("HATA: Alfabetik olmayan bir karakter girdiniz. \n");
+        if(isalpha(argv[1][i]) == 0) return 1 && printf("HATA: Alfabetik olmayan bir karakter girdiniz. \n");
     }
 
     string message = get_string("Mesajinizi giriniz:\n");
-    int abc = strlen(argv[1]);
-    string step = argv[1];
+    int keyLength = strlen(argv[1]);
+    int messageLength = strlen(message);
+    string key = argv[1];
 
-    for (unsigned long i = 0; i < strlen(message); i++){
-        ((message[i] > 64 && message[i] < 91)) ? message[i] = (((message[i] - 65) + (step[(i + abc)%abc]-65)%26)%26) + 65 : message[i];
-        ((message[i] > 96 && message[i] < 123)) ? message[i] = (((message[i] - 97) + (step[(i + abc)%abc]-65)%26)%26) + 97 : message[i];
+    for(int i = 0, x = 0; i < messageLength; i++){
+        if(isalpha(message[i])){
+            int offset = islower(message[i]) != 0 ? 97 : 65; //ill remove offset with this.
+            int pi = message[i] - offset;
+            int ki = key[(x + keyLength) %keyLength];
+            message[i] = (((pi + (toupper(ki) - 65)) %26) + offset);
+            x++;
+        }
     }
-    printf("Bitiste message stringi: %s\n",message);
+
+
+    printf("ciphertext: %s\n",message);
 }
 
 int errorFunction(int argc){
     printf("HATA: Giriş argümanı sayısını kontrol ediniz. Girilen argüman sayisi:%d\n",argc-1);
-    return 0;
+    return 1;
 }
