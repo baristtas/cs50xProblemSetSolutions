@@ -36,7 +36,7 @@ int main()
     int onKurus = ((giris%50)%25)/10;
     int besKurus = (((giris%50)%25)%10)/5;
     int birKurus = ((((giris%50)%25)%10)%5);
-    int cikantop = elliKurus + yirmibesKurus + onKurus + besKurus + birKurus;
-    printf("elli kurus: %d\nyirmibes kurus:%d\non kurus:%d\nbeskurus:%d\nbirkurus:%d\n",elliKurus,yirmibesKurus,onKurus,besKurus,birKurus);
+    int cikanTop = elliKurus + yirmibesKurus + onKurus + besKurus + birKurus;
+    printf("%i",cikanTop);
 
 }
