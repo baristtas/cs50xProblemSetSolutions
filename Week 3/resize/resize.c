@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
     bi.biWidth *= resizeValue;
     bi.biHeight *= resizeValue;
 
-    int newPadding = (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+    int newPadding = (4 - (bi.biWidth * 3) % 4) % 4;
 
     bi.biSizeImage = ((sizeof(RGBTRIPLE) * bi.biWidth) + newPadding) * abs(bi.biHeight);
     bf.bfSize = bi.biSizeImage + sizeof(BITMAPFILEHEADER) + sizeof(BITMAPINFOHEADER);
@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
     // write outfile's BITMAPINFOHEADER
     fwrite(&bi, sizeof(BITMAPINFOHEADER), 1, outptr);
 
-    RGBTRIPLE line[resizeValue * sizeof(RGBTRIPLE)];
+    RGBTRIPLE line[bi.biWidth * sizeof(RGBTRIPLE)];
     // iterate over infile's scanlines
     for (int i = 0, biHeight = abs(oldBiHeight); i < biHeight; i++)
     {
@@ -95,11 +95,11 @@ int main(int argc, char *argv[])
         for (int f = 0; f < resizeValue; f++)
         {
             fwrite(line, sizeof(RGBTRIPLE), bi.biWidth, outptr);
-        }
 
-        for (int t = 0; t < newPadding; t++)
-        {
-            fputc(0x00, outptr);
+            for (int t = 0; t < newPadding; t++)
+            {
+                fputc(0x00, outptr);
+            }
         }
 
         // skip over padding, if any
