@@ -18,10 +18,10 @@ numbers = []
 while True:
     number = get_int("Number: ")
 
-    if number != NUMBER:
+    if not number:
         break
 
     numbers.append(number)
-    
+
 for number in numbers:
     print(number)
