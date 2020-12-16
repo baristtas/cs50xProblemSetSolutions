@@ -25,9 +25,19 @@ for i in range(len(mn)):
     x = x + int(mn[i])
 
 y = x + otherNumbSum 
-if (y % 10) != 0:
-    print("INVALID") 
+
+if bool(int(cardNumber[0]) == 4):
+    print("VISA")
     exit()
 
-if(bool(int(cardNumber[0]) == 5) and (int(cardNumber[1]) in range(1,5))):
+elif(bool(int(cardNumber[0]) == 5) and (int(cardNumber[1]) in range(1,6))):
     print("MASTERCARD")
+    exit()
+
+elif (int(cardNumber[0]) == 3) and ((int(cardNumber[1]) == 4) or (int(cardNumber[1]) == 7)):
+    print("AMEX")
+    exit()
+
+if ((y % 10) != 0):
+    print(f"INVALID") 
+    exit()
