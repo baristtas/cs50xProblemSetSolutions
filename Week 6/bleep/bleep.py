@@ -13,9 +13,15 @@ def main():
         bannedText = f.read().splitlines()
     print(bannedText)
     
-    
+    inMessage = (get_string("Type your message: ")).split()
+    print(inMessage)    
 
-
+    for i in range(len(inMessage)):
+        for j in range(len(bannedText)):
+            if inMessage[i] == bannedText[j]:
+                inMessage[i] = "*" * len(inMessage[i])
+    outMessage = ' '.join([str(i) for i in inMessage]) 
+    print(outMessage)
 
 if __name__ == "__main__":
     main()
