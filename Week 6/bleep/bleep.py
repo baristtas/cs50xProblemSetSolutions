@@ -18,7 +18,7 @@ def main():
 
     for i in range(len(inMessage)):
         for j in range(len(bannedText)):
-            if inMessage[i] == bannedText[j]:
+            if (inMessage[i]).lower() == (bannedText[j]).lower():
                 inMessage[i] = "*" * len(inMessage[i])
     outMessage = ' '.join([str(i) for i in inMessage]) 
     print(outMessage)
