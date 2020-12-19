@@ -11,10 +11,8 @@ def main():
     filename = str(sys.argv[1])
     with open(filename) as f:
         bannedText = f.read().splitlines()
-    print(bannedText)
     
     inMessage = (get_string("Type your message: ")).split()
-    print(inMessage)    
 
     for i in range(len(inMessage)):
         for j in range(len(bannedText)):
